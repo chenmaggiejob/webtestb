@@ -1,4 +1,3 @@
-
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">網站標題管理</p>
     <form method="post" action="./api/edit_title.php">
@@ -12,9 +11,10 @@
                     <td></td>
                 </tr>
                 <?php
-               
-                $sql = "select * from title";
-                $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+                // $sql = "select * from title";
+                // $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                $rows = $Title->all();
                 foreach ($rows as $row) {
 
                 ?>
