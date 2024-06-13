@@ -1,6 +1,5 @@
 <?php
-$dsn = "mysql:host = localhost;charset = utf8; dbname=db15";
-$pdo = new PDO($dsn, 'root' , '');
+include_once "base.php";
 
 foreach ($_POST['id'] as $key => $id) {
     if (!empty($_POST['del']) && in_array($id,$_POST['del'])) {
