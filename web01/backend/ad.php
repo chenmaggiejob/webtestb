@@ -11,7 +11,7 @@
                 </tr>
                 <?php
 
-                $rows = $Ad->all();
+                $rows = ${ucfirst($do)}->all();
                 foreach ($rows as $row) {
 
                 ?>
@@ -36,7 +36,7 @@
             <tbody>
                 <tr>
                     <td width="200px">
-                        <input type="button" onclick="op('#cover','#cvr','./modals/ad.php')" value="新增動態文字廣告">
+                        <input type="button" onclick="op('#cover','#cvr','./modals/<?= $do; ?>.php')" value="新增動態文字廣告">
                     </td>
                     <td class="cent">
                         <input type="hidden" name="table" value="<?= $do; ?>">

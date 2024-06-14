@@ -11,7 +11,7 @@
                 </tr>
                 <?php
 
-                $rows = $Mvim->all();
+                $rows = ${ucfirst($do)}->all();
                 foreach ($rows as $row) {
 
                 ?>
