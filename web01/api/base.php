@@ -135,3 +135,4 @@ function dd($array)
 
 $Title = new DB('title');
 $Ad = new DB('ad');
+$Mvim = new DB('mvim');
