@@ -28,21 +28,21 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find($arg)
     {
-        $sql = "select * form `$this->table` ";
+        $sql = "select * from `$this->table` ";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
             $sql .= " where " . join(" && ", $tmp);
         } else {
             $sql .= " where `id`='$arg'";
         }
-
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -52,13 +52,13 @@ class DB
         if (isset($arg['id'])) {
             //update
             $tmp = $this->a2s($arg);
-            $sql = "update `$this->table` set" . join(",", $tmp);
+            $sql = "update `$this->table` set " . join(",", $tmp);
             $sql .= " where `id`='{$arg['id']}'";
         } else {
             //insert
             $keys = array_keys($arg);
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
-                    values('" . join("','", $arg) . "')";
+                   values('" . join("','", $arg) . "')";
         }
 
         return $this->pdo->exec($sql);
@@ -69,15 +69,17 @@ class DB
         $sql = "delete from `$this->table` ";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
-            $sql .= " where" . join(" && ", $tmp);
+            $sql .= " where " . join(" && ", $tmp);
         } else {
-            $sql .= " where `id`=''";
+            $sql .= " where `id`='$arg'";
         }
+
+        return $this->pdo->exec($sql);
     }
 
     public function count(...$arg)
     {
-        $sql = "select count(*) from `$this->table`";
+        $sql = "select count(*) from  `$this->table`";
 
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -91,8 +93,8 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        //echo $sql;
 
-        echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
 
@@ -110,16 +112,9 @@ class DB
 
 
 
-
-
-
-
-
-
-
 function q($sql)
 {
-    $dsn = "mysql:host = localhost;charset=utf8;dbname=db15";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -139,5 +134,4 @@ function dd($array)
 
 
 $Title = new DB('title');
-$Ad =
-dd($Title->count(['text' => '校園管理系統']));
+$Ad = new DB('ad');

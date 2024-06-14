@@ -12,15 +12,13 @@
                 </tr>
                 <?php
 
-                // $sql = "select * from title";
-                // $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                 $rows = $Title->all();
                 foreach ($rows as $row) {
 
                 ?>
-                    <tr class="cent">
+                    <tr class='cent'>
                         <td width="45%">
-                            <img src="./images/<?= $row['img']; ?>" style="width: 300px;height: 30px;">
+                            <img src="./images/<?= $row['img']; ?>" style='width:300px;height:30px'>
                         </td>
                         <td width="23%">
                             <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>">
@@ -28,17 +26,18 @@
                         <td width="7%">
                             <input type="radio" name="sh" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
                         </td>
-                        <td width="7%">
+                        <td width=" 7%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
-                            <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                         </td>
+                        <td></td>
+                        <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </tr>
                 <?php
                 }
                 ?>
             </tbody>
         </table>
-        <table style="margin-top:40px; width:70%;">
+        <table style=" margin-top:40px; width:70%;">
             <tbody>
                 <tr>
                     <td width="200px">
