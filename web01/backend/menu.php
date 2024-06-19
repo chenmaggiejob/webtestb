@@ -13,7 +13,7 @@
                 </tr>
                 <?php
 
-                $rows = ${ucfirst($do)}->all();
+                $rows = ${ucfirst($do)}->all(['main_id' => 0]);
                 foreach ($rows as $row) {
 
                 ?>
@@ -33,7 +33,8 @@
                         <td width=" 10%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
-                        <td><input type="button" value="編輯次選單"></td>
+                        <td><input type="button" value="編輯次選單" onclick="op('#cover','#cvr','./modals/submenu.php?id=<?= $row['id']; ?>')">
+                        </td>
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </tr>
                 <?php
