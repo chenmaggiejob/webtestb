@@ -25,10 +25,10 @@
                             <input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:98%">
                         </td>
                         <td width=" 10%">
-
+                            <?= $Menu->count(['main_id' => $row['id']]); ?>
                         </td>
                         <td width=" 10%">
-                            <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>">
+                            <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
                         </td>
                         <td width=" 10%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
