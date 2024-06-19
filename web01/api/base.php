@@ -140,3 +140,5 @@ $Image = new DB('image');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
+$Bottom = new DB('bottom');
+$Total = new DB('views');
