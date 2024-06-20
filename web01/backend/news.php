@@ -10,6 +10,7 @@
 
                 </tr>
                 <?php
+
                 $total = ${ucfirst($do)}->count();
                 $div = 4;
                 $pages = ceil($total / $div);
@@ -62,20 +63,22 @@
             }
 
             ?>
-            <table style=" margin-top:40px; width:70%;">
-                <tbody>
-                    <tr>
-                        <td width="200px">
-                            <input type="button" onclick="op('#cover','#cvr','./modals/<?= $do; ?>.php')" value="新增最新消息">
-                        </td>
-                        <td class="cent">
-                            <input type="hidden" name="table" value="<?= $do; ?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+        </div>
+        <table style=" margin-top:40px; width:70%;">
+            <tbody>
+                <tr>
+                    <td width="200px">
+                        <input type="button" onclick="op('#cover','#cvr','./modals/<?= $do; ?>.php')" value="新增最新消息">
+                    </td>
+                    <td class="cent">
+                        <input type="hidden" name="table" value="<?= $do; ?>">
+                        <input type="submit" value="修改確定">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
     </form>
 </div>

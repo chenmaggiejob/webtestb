@@ -37,7 +37,7 @@
 					foreach ($main as $m) {
 					?>
 						<div class="mainmu">
-							<a href="<?= $m['href']; ?>">
+							<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $m['href']; ?>">
 								<?= $m['text']; ?>
 							</a>
 							<?php
@@ -47,7 +47,7 @@
 								foreach ($sub as $s) {
 							?>
 									<div class="mainmu2">
-										<a href="<?= $s['href']; ?>"><?= $s['text']; ?></a>
+										<a href='<?= $s['href']; ?>'><?= $s['text']; ?></a>
 									</div>
 							<?php
 								}
@@ -80,22 +80,26 @@
 
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+				<?php if (!isset($_SESSION['login'])) : ?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+				<?php else : ?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('admin.php')">返回管理</button>
+				<?php endif; ?>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
-					<div class="cent" onclick='pp(1)' style="margin:5px 0">
+					<div class='cent' onclick='pp(1)' style="margin:5px 0">
 						<img src="./icon/up.jpg" alt="">
 					</div>
 					<?php
 					$ims = $Image->all(['sh' => 1]);
 					foreach ($ims as $key => $im) {
 					?>
-						<div class="im cent" id='ssaa<?= $key; ?>' style='margin:2px 0'>
-							<img src="./images/<?= $im['img']; ?>" style="width: 150px;height:103px;border:2px solid orange;">
+						<div class='im cent' id='ssaa<?= $key; ?>' style='margin:2px 0'>
+							<img src="./images/<?= $im['img']; ?>" style="width:150px;height:103px;border:2px solid orange;">
 						</div>
 					<?php  }	?>
 
-					<div class="cent" onclick="pp(2)" style="margin:5px 0">
+					<div class='cent' onclick='pp(2)' style="margin:5px 0">
 						<img src="./icon/down.jpg" alt="">
 					</div>
 					<script>
