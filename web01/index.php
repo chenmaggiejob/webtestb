@@ -32,6 +32,33 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+					$main = $Menu->all(['sh' => 1, 'main_id' => 0]);
+					foreach ($main as $m) {
+					?>
+						<div class="mainmu">
+							<a href="<?= $m['href']; ?>">
+								<?= $m['text']; ?>
+							</a>
+							<?php
+							if ($Menu->count(['main_id' => $m['id']]) > 0) {
+								$sub = $Menu->all(['main_id' => $m['id']]);
+								echo "<div class='mw'>";
+								foreach ($sub as $s) {
+							?>
+									<div class="mainmu2">
+										<a href="<?= $s['href']; ?>"><?= $s['text']; ?></a>
+									</div>
+							<?php
+								}
+								echo "</div>";
+							}
+							?>
+						</div>
+					<?php
+					}
+					?>
+
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
@@ -66,12 +93,11 @@
 						<div class="im cent" id='ssaa<?= $key; ?>' style='margin:2px 0'>
 							<img src="./images/<?= $im['img']; ?>" style="width: 150px;height:103px;border:2px solid orange;">
 						</div>
-					<?PHP } ?>
+					<?php  }	?>
 
 					<div class="cent" onclick="pp(2)" style="margin:5px 0">
 						<img src="./icon/down.jpg" alt="">
 					</div>
-
 					<script>
 						var nowpage = 0,
 							num = <?= $Image->count(['sh' => 1]); ?>;
