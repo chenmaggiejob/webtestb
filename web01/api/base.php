@@ -144,6 +144,17 @@ $Menu = new DB('menu');
 $Bottom = new DB('bottom');
 $Total = new DB('views');
 
+//remote
+// $Title = new DB('q1_title');
+// $Ad = new DB('q1_ad');
+// $Mvim = new DB('q1_mvim');
+// $Image = new DB('q1_image');
+// $News = new DB('q1_news');
+// $Admin = new DB('q1_admin');
+// $Menu = new DB('q1_menu');
+// $Bottom = new DB('q1_bottom');
+// $Total = new DB('q1_views');
+
 if (!isset($_SESSION['view'])) {
     $total = $Total->find(1);
     $total['view']++;
