@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<?php include_once "./api/base.php"; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -22,7 +23,9 @@
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2">
-			<img src="./icon/02B01.jpg" alt="">
+			<a href="index.php">
+				<img src="icon/02B01.jpg" alt="">
+			</a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -34,13 +37,32 @@
 			</div>
 			<div class="hal" id="main">
 				<div>
+
 					<span style="width:78%; display:inline-block;">
-						<marquee >請民眾踴躍投稿電子報，讓電子報成為大家的相互交流、分享的園地！詳見最新文章</marquee>
+						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
 					</span>
 					<span style="width:18%; display:inline-block;">
-						<a href="?do=login">會員登入</a>
+						<?php
+						if (isset($_SESSION['user'])) {
+							echo "歡迎，{$_SESSION['user']}";
+							echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
+						} else {
+							echo "<a href='?do=login'>會員登入</a>";
+						}
+						?>
 					</span>
-					<div class="">
+					<div class="content">
+						<?php
+						$do = $_GET['do'] ?? 'main';
+						$file = "./frontend/{$do}.php";
+						if (file_exists($file)) {
+							include $file;
+						} else {
+							include "./frontend/main.php";
+						}
+
+
+						?>
 					</div>
 				</div>
 			</div>
@@ -48,7 +70,7 @@
 		<div id="bottom">
 			本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2012健康促進網社群平台 All Right Reserved
 			<br>
-			服務信箱：health@test.labor.gov.tw<img src="./home_files/02B02.jpg" width="45">
+			服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
 		</div>
 	</div>
 

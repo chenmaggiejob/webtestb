@@ -133,12 +133,4 @@ function dd($array)
 }
 
 
-
-
-
-if (!isset($_SESSION['view'])) {
-    $total = $Total->find(1);
-    $total['view']++;
-    $Total->save($total);
-    $_SESSION['view'] = $total['view'];
-}
+$User = new DB("users");
