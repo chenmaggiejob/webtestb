@@ -2,7 +2,6 @@
 session_start();
 
 class DB
-
 {
     protected $table;
     protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
@@ -136,15 +135,16 @@ function dd($array)
 
 $User = new DB("users");
 $Total = new DB("total");
-$News = new DB("news");
+$News = new DB('news');
+
 
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
-        $total = $Total->find(['date' => date("Y-m_d")]);
+        $total = $Total->find(['date' => date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     } else {
         $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
     }
-    $_SESSION['total'] = $Total->find(['date' => date("Y-m_d")])['total'];
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
 }

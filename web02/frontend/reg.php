@@ -1,6 +1,7 @@
-<fieldset style="width:60%;margin:20px auto">
+<fieldset>
     <legend>會員註冊</legend>
-    <div class="" style="color:red;">*請設定您要註冊的帳號及密碼（最長12個字元）</div>
+    <!-- div+table>tr*5>td.clo+td>input:text -->
+    <div style="color:red">*請設定您要註冊的帳號及密碼(最長12個字元)</div>
     <table>
         <tr>
             <td class="clo">Step1:登入帳號</td>
@@ -35,8 +36,9 @@
             pw2: $("#pw2").val(),
             email: $("#email").val(),
         }
+
         if (user.acc == '' || user.pw == '' || user.pw2 == '' || user.email == '') {
-            alert("不可空白");
+            alert("不可空白")
         } else if (user.pw != user.pw2) {
             alert("密碼錯誤")
         } else {
@@ -46,11 +48,13 @@
                 if (parseInt(chk) == 1) {
                     alert("帳號重複")
                 } else {
-                    $.post("./api/reg.php", user, () => {
-                        alert('註冊完成，歡迎加入')
+                    $.post("./api/reg.php", user, (res) => {
+                        //console.log(res)
+                        alert("註冊完成，歡迎加入")
                     })
                 }
             })
         }
+
     }
 </script>
