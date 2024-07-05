@@ -60,8 +60,6 @@
 						} else {
 							include "./frontend/main.php";
 						}
-
-
 						?>
 					</div>
 				</div>
