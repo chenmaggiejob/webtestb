@@ -13,8 +13,11 @@
 	<style>
 		.alert {
 			background: rgba(51, 51, 51, 0.8);
+			padding: 10px;
+			box-shadow: 2px 2px 10px #999;
+			border-radius: 5px 5px 0 0;
 			color: #FFF;
-			min-height: 100px;
+			height: 350px;
 			width: 300px;
 			position: fixed;
 			display: none;
@@ -26,7 +29,6 @@
 
 <body>
 
-	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
 			<?= date("m 月 d 號 l"); ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽: <?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
