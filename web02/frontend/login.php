@@ -49,8 +49,4 @@
             }
         })
     }
-
-    function clear() {
-
-    }
 </script>

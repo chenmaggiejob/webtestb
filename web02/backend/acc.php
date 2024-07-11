@@ -21,7 +21,7 @@
     </table>
     <div class="ct">
         <button onclick="del()">確定刪除</button>
-        <button onclick="clear()">清空選取</button>
+        <button onclick="clean()">清空選取</button>
     </div>
 
 
@@ -49,7 +49,7 @@
         <tr>
             <td>
                 <button onclick="reg()">註冊</button>
-                <button onclick="clear()">清除</button>
+                <button onclick="clean()">清除</button>
             </td>
             <td></td>
         </tr>

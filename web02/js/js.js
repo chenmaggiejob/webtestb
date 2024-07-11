@@ -3,7 +3,7 @@ function lo(th,url)
 {
 	$.ajax(url,{cache:false,success: function(x){$(th).html(x)}})
 }
-function good(id,type,user)
+/* function good(id,type,user)
 {
 	$.post("back.php?do=good&type="+type,{id,user},function()
 	{
@@ -18,4 +18,10 @@ function good(id,type,user)
 			$("#good"+id).text("讚").attr("onclick","good('"+id+"','1','"+user+"')")
 		}
 	})
+}
+ */
+function clean(){
+
+	$("input[type='text'],input[type='password']").val("")
+	$("input[type='checkbox']").prop('checked',false)
 }
