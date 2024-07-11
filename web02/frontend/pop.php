@@ -1,7 +1,7 @@
 <div>
     目前位置：首頁 > 人氣文章區
 </div>
-<table class="tab pop">
+<table class="pop">
     <tr>
         <td width="30%">標題</td>
         <td width="50%">內容</td>
@@ -33,8 +33,22 @@
                 </div>
             </td>
             <td>
-                <?= $row['good']; ?>個人說
-                <img src="./icon/02B03.jpg" style="width: 20px;">
+                <span class='num'><?= $row['good']; ?></span>個人說
+                <img src="./icon/02B03.jpg" style="width:20px;">
+                <?php
+                if (isset($_SESSION['user'])) {
+                    $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
+                    if ($chk > 0) {
+                        echo "-<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo "收回讚";
+                        echo "</a>";
+                    } else {
+                        echo "-<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo "讚";
+                        echo "</a>";
+                    }
+                }
+                ?>
             </td>
         </tr>
     <?php
@@ -71,4 +85,23 @@
         },
 
     )
+    $(".good").on("click", function() {
+        let num = $(this).siblings('.num').text() * 1;
+        let data = {
+            user: $(this).data('user'),
+            news: $(this).data('news')
+        }
+        $.post("./api/good.php", data, () => {
+            switch ($(this).text()) {
+                case "讚":
+                    $(this).text("收回讚")
+                    $(this).siblings('.num').text(num + 1)
+                    break;
+                case "收回讚":
+                    $(this).text("讚")
+                    $(this).siblings('.num').text(num - 1)
+                    break;
+            }
+        })
+    })
 </script>
