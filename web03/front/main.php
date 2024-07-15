@@ -7,7 +7,7 @@
                 $posters = $Poster->all(['sh' => 1], " Order By rank");
                 foreach ($posters as $poster) {
                 ?>
-                    <div class='poster' data-ani='<?= $poster['ani']?>'>
+                    <div class='poster' data-ani='<?= $poster['ani']; ?>'>
                         <img src="./images/<?= $poster['img']; ?>">
                         <div class='name'><?= $poster['name']; ?></div>
                     </div>
@@ -21,10 +21,16 @@
                     <div class="btn-left"></div>
                 </div>
                 <div class="btns">
-                    <div class="btn">A</div>
-                    <div class="btn">B</div>
-                    <div class="btn">C</div>
-                    <div class="btn">D</div>
+                    <?php
+                    foreach ($posters as $poster) {
+                    ?>
+                        <div class="btn">
+                            <img src="./images/<?= $poster['img']; ?>" alt="">
+                            <div><?= $poster['name']; ?></div>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="control">
                     <div class="btn-right"></div>
@@ -42,16 +48,20 @@
         ani()
     }, 3000)
 
-    function ani() {
+    function ani(idx) {
 
-        let ani = parseInt($(".poster").eq(now).data('ani'))
-
-        if (now < $(".poster").length - 1) {
-            next = now + 1;
+        let code = parseInt($(".poster").eq(now).data('ani'))
+        if (idx != undefined) {
+            next = idx;
         } else {
-            next = 0
+            if (now < $(".poster").length - 1) {
+                next = now + 1;
+            } else {
+                next = 0
+            }
         }
-        switch (ani) {
+        //console.log(ani, now, next)
+        switch (code) {
             case 1:
                 //淡入淡出
                 $(".poster").eq(now).fadeOut(1000, () => {
@@ -62,6 +72,7 @@
                 //縮放
                 $(".poster").eq(now).hide(1000, () => {
                     $(".poster").eq(next).show(1000)
+
                 })
                 break;
             case 3:
@@ -70,11 +81,55 @@
                     $(".poster").eq(next).slideDown(1000)
                 })
                 break;
-
         }
+
         now = next
 
     }
+
+    let page = 0;
+    $(".btn-left,.btn-right").on("click", function() {
+
+        let direction = $(this).attr('class').split("-")[1]
+        switch (direction) {
+            case 'left':
+                if ((page - 1) >= 0) {
+                    page--;
+                }
+                $(".btn").animate({
+                    right: 80 * page
+                });
+
+                break;
+            case 'right':
+                if ((page + 1) <= ($(".btn").length - 4)) {
+                    page++;
+                }
+                $(".btn").animate({
+                    right: 80 * page
+                });
+                break;
+        }
+    })
+
+
+    $(".btns").hover(
+        function() {
+            clearInterval(slide)
+        },
+        function() {
+            slide = setInterval(() => {
+                ani()
+            }, 3000)
+        }
+    )
+
+    $(".btn").on("click", function() {
+        let idx = $(this).index();
+        ani(idx)
+
+        //console.log("next->", idx, "ani->", ani, "now->", visible)
+    })
 </script>
 
 
