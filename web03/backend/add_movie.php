@@ -131,20 +131,4 @@
         <input type="submit" value="新增">
         <input type="reset" value="重置">
     </div>
-
-    <div>
-        <select name="test" id="">
-
-            <?php
-            $a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-            foreach ($a as $key => $value) {
-            ?>
-                <option value="<?= $value ?>"><?= $value ?></option>
-            <?php
-            }
-            ?>
-
-        </select>
-    </div>
-
 </form>
