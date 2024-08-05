@@ -26,11 +26,11 @@
     }
 
     .null {
-        background: url('../icon/03D02.png') center no-repeat;
+        background: url('./icon/03D02.png') center no-repeat;
     }
 
     .booked {
-        background: url('../icon/03D03.png') center no-repeat;
+        background: url('./icon/03D03.png') center no-repeat;
     }
 
     .chk {
@@ -49,12 +49,24 @@
 <div class="theater">
     <div class="seats">
         <?php
+        $seats = [];
+        $movieName = $Movie->find($_GET['id'])['name'];
+        $orders = $Order->all(['movie' => $movieName, 'date' => $_GET['date'], 'session' => $_GET['session']]);
+        foreach ($orders as $order) {
+            $seats = array_merge($seats, unserialize($order['seats']));
+        }
+
         for ($i = 0; $i < 20; $i++) {
-            echo "<div class='seat null'>";
+            if (in_array($i, $seats)) {
+                echo "<div class='seat booked'>";
+            } else {
+                echo "<div class='seat null'>";
+                echo "<input type='checkbox' class='chk' value='$i'>";
+            }
+
             echo "<div>";
             echo (floor($i / 5) + 1) . "排" . ($i % 5 + 1) . "號";
             echo "</div>";
-            echo "<input type='checkbox' class='chk' value='$i'>";
             echo "</div>";
         }
         ?>
@@ -66,20 +78,32 @@
     <div>您選擇的時刻是：<?= $_GET['date']; ?> <?= $_GET['session']; ?></div>
     <div>您已經勾選<span id='tickets'>0</span>張票，最多可以購買四張票</div>
     <div class='ct'>
-        <button onclick="$('#booking,#menuBlock').toggle()">上一步</button>
-        <button>訂購</button>
+        <button onclick="$('#booking,#menuBlock').toggle();seats.length=0">上一步</button>
+        <button onclick="order()">訂購</button>
     </div>
 </div>
 
 <script>
-    let seats = new Array()
-
     $(".chk").on("click", function() {
-        if (seats.length < 4) {
-            seats.push($(this).val())
-            $("#tickets").text(seats.length)
+        if ($(this).prop('checked')) {
+
+            if (seats.length < 4) {
+                seats.push($(this).val())
+
+            } else {
+                $(this).prop("checked", false)
+                alert("最多只能選四個座位")
+            }
         } else {
-            alert("最多只能選四個座位")
+            seats.splice(seats.indexOf($(this).val()), 1)
         }
+        $("#tickets").text(seats.length)
     })
+
+    function order() {
+        info['seats'] = seats;
+        $.post("api/order.php", info, function(res) {
+            $("#booking").html(res)
+        })
+    }
 </script>
