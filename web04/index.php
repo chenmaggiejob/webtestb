@@ -26,8 +26,21 @@ include_once "./api/base.php";
                 <a href="?do=news">最新消息</a> |
                 <a href="?do=look">購物流程</a> |
                 <a href="?do=buycart">購物車</a> |
-                <a href="?do=login">會員登入</a> |
-                <a href="?do=admin">管理登入</a>
+                <?php
+                if (isset($_SESSION['Mem'])) {
+                    echo "<a href='./api/logout.php?user=mem'>登出</a> |";
+                } else {
+                    echo "<a href='?do=login'>會員登入</a> |";
+                }
+                ?>
+
+                <?php
+                if (isset($_SESSION['Admin'])) {
+                    echo "<a href='admin.php'>返回管理</a>";
+                } else {
+                    echo "<a href='?do=admin'>管理登入</a>";
+                }
+                ?>
             </div>
             <marquee>
                 年終特賣會開跑了 &nbsp; 情人節特惠活動
