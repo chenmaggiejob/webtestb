@@ -26,24 +26,36 @@ function editType(id, dom) {
 
 }
 
-function getTypes(type = 'big', id = 0,selected=0) {
+/**
+ * 
+ * @param {string} type  big or mid
+ * @param {int} id  type id
+ * @param {array} selected  選單中是否有已被選擇的值
+ */
+function getTypes(type = 'big', id = 0,selected=new Array()) {
 	$.get("./api/get_types.php", {
 		type,
 		id,
 	}, (types) => {
-
+		//console.log(type,selected)
 		switch (type) {
 			case 'big':
 				$("#bigSelect").html(types)
-				if(selected>0){
-					$("#bigSelect").val(selected)
-					getTypes('mid',selected)
+
+				//如果有選擇的值，則將選擇的值設定為選單的值
+				if(selected.length>0){
+					$("#bigSelect").val(selected[0])
+
+					//如果大分類有選擇的值，則取得中分類被選擇的值
+					getTypes('mid',selected[0],[selected[1]])
 				}
 				break;
 			case 'mid':
 				$("#midSelect").html(types)
-				if(selected>0){
-					$("#midSelect").val(selected)
+
+				//如果有選擇的值，則將選擇的值設定為選單的值
+				if(selected.length>0){
+					$("#midSelect").val(selected[0])
 				}
 				break;
 		}
