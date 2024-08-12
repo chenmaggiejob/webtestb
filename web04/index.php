@@ -48,6 +48,28 @@ include_once "./api/base.php";
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
+                <div class="ww">
+                    <a href="">全部商品</a>
+                </div>
+                <?php
+                $bigs = $Type->all(['big_id' => 0]);
+                foreach ($bigs as $big) {
+                    echo "<div class='ww'>";
+                    echo "<a href=''>{$big['name']}</a>";
+                    if ($Type->count(['big_id' => $big['id']]) > 0) {
+                        $mids = $Type->all(['big_id' => $big['id']]);
+                        echo "<div class='s'>";
+                        foreach ($mids as $mid) {
+                            echo "<a href=''>{$mid['name']}</a>";
+                        }
+                        echo "</div>";
+                    }
+
+
+                    echo "</div>";
+                }
+
+                ?>
             </div>
             <span>
                 <div>進站總人數</div>
@@ -55,6 +77,7 @@ include_once "./api/base.php";
             </span>
         </div>
         <div id="right">
+            <a href="">全部商品</a>
             <?php
             $do = $_GET['do'] ?? 'main';
             $file = "front/$do.php";
