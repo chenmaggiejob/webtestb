@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-08-11 18:27:51
--- 伺服器版本： 10.4.25-MariaDB
--- PHP 版本： 8.2.12
+-- 產生時間： 2024-08-13 04:50:35
+-- 伺服器版本： 10.4.32-MariaDB
+-- PHP 版本： 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(10) NOT NULL,
-  `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pw` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pr` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `acc` text NOT NULL,
+  `pw` text NOT NULL,
+  `pr` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -50,7 +50,7 @@ INSERT INTO `admin` (`id`, `acc`, `pw`, `pr`) VALUES
 
 CREATE TABLE `bottom` (
   `id` int(10) UNSIGNED NOT NULL,
-  `bottom` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `bottom` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -68,13 +68,13 @@ INSERT INTO `bottom` (`id`, `bottom`) VALUES
 
 CREATE TABLE `goods` (
   `id` int(10) UNSIGNED NOT NULL,
-  `no` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no` text NOT NULL,
+  `name` text NOT NULL,
   `price` int(10) UNSIGNED NOT NULL,
   `stock` int(10) UNSIGNED NOT NULL,
-  `spec` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `intro` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `spec` text NOT NULL,
+  `intro` text NOT NULL,
+  `img` text NOT NULL,
   `big` int(10) UNSIGNED NOT NULL,
   `mid` int(10) UNSIGNED NOT NULL,
   `sh` int(1) UNSIGNED NOT NULL
@@ -92,7 +92,8 @@ INSERT INTO `goods` (`id`, `no`, `name`, `price`, `stock`, `spec`, `intro`, `img
 (5, '030203', '經典優雅時尚流行涼鞋', 2650, 8, 'LL', '優雅流線方型楦頭設計，結合簡潔線條綴飾，\r\n獨特的弧度與曲線美，突顯年輕優雅品味，\r\n是年輕上班族不可或缺的鞋款！\r\n全新美國運回，現貨附鞋盒', '0407.jpg', 2, 8, 1),
 (6, '040202', '寵愛天然藍寶女戒', 28000, 1, '1克拉', '◎典雅設計品味款\r\n◎藍寶為珍貴天然寶石之一，具有保值收藏\r\n◎專人設計製造，以貴重珠寶精緻鑲工製造', '0408.jpg', 3, 10, 1),
 (7, '050107', '反折式大容量手提肩背包', 888, 15, 'L號', '特色:反折式的包口設計,釘釦的裝飾,讓簡單的包型更增添趣味性\r\n材質:棉布\r\n顏色:藍色\r\n尺寸:長50cm寬20cm高41cm\r\n產地:日本', '0409.jpg', 4, 12, 1),
-(8, '060108', '男單肩包男', 650, 7, '多功能', '特色:男單肩包/電腦包/公文包/雙肩背包多用途\r\n材質:帆不\r\n顏色:黑色\r\n尺寸:深11cm寬42cm高33cm\r\n產地:香港\r\n', '0410.jpg', 4, 12, 1);
+(8, '060108', '男單肩包男', 650, 7, '多功能', '特色:男單肩包/電腦包/公文包/雙肩背包多用途\r\n材質:帆不\r\n顏色:黑色\r\n尺寸:深11cm寬42cm高33cm\r\n產地:香港\r\n', '0410.jpg', 4, 12, 1),
+(9, '628145', '超級無敵大背包', 1000, 10, '5L', 'fsfadfasdf\r\nasdfsda\r\nfasfsa', '0410.jpg', 4, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -102,12 +103,12 @@ INSERT INTO `goods` (`id`, `no`, `name`, `price`, `stock`, `spec`, `intro`, `img
 
 CREATE TABLE `members` (
   `id` int(10) UNSIGNED NOT NULL,
-  `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pw` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tel` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addr` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `acc` text NOT NULL,
+  `pw` text NOT NULL,
+  `name` text NOT NULL,
+  `tel` text NOT NULL,
+  `addr` text NOT NULL,
+  `email` text NOT NULL,
   `regdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -127,16 +128,26 @@ INSERT INTO `members` (`id`, `acc`, `pw`, `name`, `tel`, `addr`, `email`, `regda
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `no` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addr` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tel` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no` text NOT NULL,
+  `acc` text NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `addr` text NOT NULL,
+  `tel` text NOT NULL,
   `total` int(10) UNSIGNED NOT NULL,
-  `cart` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cart` text NOT NULL,
   `orderdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `orders`
+--
+
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `cart`, `orderdate`) VALUES
+(1, '20240813836612', 'mem02', '張伯伯', 'bu@gmail.com', '新北市三重區', '092223334', 2200, 'a:2:{i:1;s:1:\"1\";i:4;s:1:\"1\";}', '2024-08-13'),
+(2, '20240813413141', 'mem02', 'mem02', 'mem02', 'dsasdfasf', '12312313', 30200, 'a:3:{i:1;s:1:\"1\";i:4;s:1:\"1\";i:6;s:1:\"1\";}', '2024-08-13'),
+(3, '20240813152932', 'mem02', 'mem02', 'mem02', 'dsasdfasf', '12312313', 31000, 'a:4:{i:1;s:1:\"1\";i:4;s:1:\"1\";i:6;s:1:\"1\";i:3;s:1:\"1\";}', '2024-08-13'),
+(4, '20240813780731', 'mem02', 'mem02', 'mem02', 'dsasdfasf', '12312313', 685, 'a:1:{i:2;s:1:\"1\";}', '2024-08-13');
 
 -- --------------------------------------------------------
 
@@ -146,7 +157,7 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `types` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text NOT NULL,
   `big_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -196,6 +207,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `types`
 --
 ALTER TABLE `types`
@@ -221,12 +238,18 @@ ALTER TABLE `bottom`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `members`
 --
 ALTER TABLE `members`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `orders`
+--
+ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
