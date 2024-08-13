@@ -120,6 +120,26 @@ class DB
 
         return $this->pdo->query($sql)->fetchColumn();
     }
+    public function sum(...$arg)
+    {
+        $sql = "select sum(`total`) from  `$this->table`";
+
+        if (isset($arg[0])) {
+            if (is_array($arg[0])) {
+                $tmp = $this->a2s($arg[0]);
+                $sql .= " where " . join(" && ", $tmp);
+            } else {
+                $sql .= $arg[0];
+            }
+        }
+
+        if (isset($arg[1])) {
+            $sql .= $arg[1];
+        }
+        //echo $sql;
+
+        return $this->pdo->query($sql)->fetchColumn();
+    }
 
 
     protected function a2s($array)
