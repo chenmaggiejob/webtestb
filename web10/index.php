@@ -19,9 +19,13 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
-		<div id="title2">
-			<img src="./icon/02B01.jpg" alt="">
+			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36
+			<a href="index.php" style="float: right" ;>回首頁</a>
+		</div>
+		<div id=" title2">
+			<a href="index.php">
+				<img src="./icon/02B01.jpg" alt="健康促進網－回首頁">
+			</a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -33,11 +37,22 @@
 			</div>
 			<div class="hal" id="main">
 				<div>
-
+					<span style="width:78%; display:inline-block;">
+						<marquee>請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
+					</span>
 					<span style="width:18%; display:inline-block;">
 						<a href="?do=login">會員登入</a>
 					</span>
-					<div class="">
+					<div class="content">
+						<?php
+						$do = $_GET['do'] ?? 'main';
+						$file = "./frontend/{$do}.php";
+						if (file_exists($file)) {
+							include $file;
+						} else {
+							include "./frontend/main.php";
+						}
+						?>
 					</div>
 				</div>
 			</div>
