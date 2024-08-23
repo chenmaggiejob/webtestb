@@ -94,7 +94,11 @@ class DB
 }
 
 $Users = new DB('users');
-$data = $Users->del(['id' => '4']);
+$Total = new DB('total');
+$News = new DB('news');
+$Que = new DB('que');
+$Logs = new DB('logs');
+
 
 function q($sql)
 {
@@ -116,4 +120,4 @@ function dd($array)
     echo "</pre>";
 }
 
-dd($data);
+// dd($data);

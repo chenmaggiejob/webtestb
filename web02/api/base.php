@@ -111,8 +111,6 @@ class DB
     }
 }
 
-
-
 function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
