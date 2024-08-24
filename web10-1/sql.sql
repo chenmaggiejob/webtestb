@@ -1,0 +1,1 @@
+INSERT INTO `users` (`id`, `acc`, `pw`, `emai`) VALUES (NULL, 'admin', '1234', 'emil');
