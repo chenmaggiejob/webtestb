@@ -24,6 +24,29 @@
 
 <script>
     function login() {
+        $.post('./api/chk_acc.php', {
+            acc: $('#acc').val()
+        }, (chkAcc) => {
+            if (parseInt(chkAcc) == 1) {
+                // console.log("帳號存在")
+                $.post('./api/chk_pw.php', {
+                    acc: $('#acc').val(),
+                    pw: $('#pw').val()
+                }, (chk_Pw) => {
+                    if (parseInt(chk_Pw)) {
+                        if (parseInt(chkAcc) == 'admin') {
+                            location.href = './bank.php'
+                        } else {
+                            location.href = './index.php'
+                        }
+                    } else {
+                        alert("密碼錯誤")
+                    }
+                })
+            } else {
+                alert("查無帳號")
+            }
+        })
 
     }
 

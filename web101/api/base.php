@@ -4,7 +4,7 @@ session_start();
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db101";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db10";
     protected $pdo;
 
     function __construct($table)
@@ -107,7 +107,7 @@ $data = $Users->del(['id' => '5']);
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db101";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db10";
     $pdo = new PDO($dsn, 'root', '');
     // echo $sql;
     return $pdo->query($sql)->fetchAll(2);
@@ -125,4 +125,4 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
-dd($data);
+// dd($data);
