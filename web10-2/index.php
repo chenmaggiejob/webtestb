@@ -55,11 +55,11 @@
 					<div class="content">
 						<?php
 						$do = $_GET['do'] ?? 'main';
-						$file = "./forntend/{$do}.php";
+						$file = "./frontend/{$do}.php";
 						if (file_exists($file)) {
 							include $file;
 						} else {
-							include "./forntend/main.php";
+							include "./frontend/main.php";
 						}
 
 						?>
