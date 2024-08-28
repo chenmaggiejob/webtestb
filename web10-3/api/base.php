@@ -100,6 +100,18 @@ class DB
 $Users = new DB('users');
 // $data = $Users->count(['acc' => 'test']);
 
+function q($sql)
+{
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db10";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(2);
+}
+
+function to($url)
+{
+    header("location:" . $url);
+}
+
 function dd($array)
 {
     echo "<pre>";

@@ -120,7 +120,7 @@ function q($sql)
 
 function to($url)
 {
-    header("localtion:" . $url);
+    header("location:" . $url);
 }
 
 function dd($array)

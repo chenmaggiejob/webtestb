@@ -44,7 +44,7 @@
 						<?php
 						if (isset($_SESSION['user'])) {
 							echo "歡迎，{$_SESSION['user']}";
-							echo "<button onclick='location.href=&#39./api/logout.php&#39'>登出</button>";
+							echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
 						} else {
 							echo "<a href='?do=login'>會員登入</a>";
 						}
