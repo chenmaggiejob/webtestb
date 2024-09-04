@@ -24,6 +24,9 @@ class DB
                 $sql .= $arg[0];
             }
         }
+        if (isset($arg[1])) {
+            $sql .= $arg[1];
+        }
         // echo $sql;
         return $this->pdo->query($sql)->fetchAll(2);
     }
@@ -44,7 +47,7 @@ class DB
     function save($arg)
     {
         if (isset($arg['id'])) {
-            $tmp = $this->a2s($arg['id']);
+            $tmp = $this->a2s($arg);
             $sql = "update `$this->table` set" . join(",", $tmp) . "where `id` = {$arg['id']}";
         } else {
             $keys = array_keys($arg);
@@ -64,6 +67,9 @@ class DB
                 $sql .= " where " . join(" && ", $tmp);
             } else {
                 $sql .= $arg[0];
+            }
+            if (isset($arg[1])) {
+                $sql .= $arg[1];
             }
             // echo $sql;
             return $this->pdo->query($sql)->fetchColumn();
@@ -95,9 +101,6 @@ class DB
 
 $Users = new DB('users');
 $Total = new DB('total');
-$News = new DB('news');
-$Que = new DB('que');
-$Logs = new DB('logs');
 
 
 function q($sql)
@@ -121,3 +124,15 @@ function dd($array)
 }
 
 // dd($data);
+
+
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['date' => date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    } else {
+        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+}
