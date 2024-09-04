@@ -15,8 +15,8 @@
                 <button onclick="clear()">清除</button>
             </td>
             <td>
-                <a href="?do=forgot.php">忘記密碼</a>
-                <a href="?do=reg.php">尚未註冊</a>
+                <a href="?do=forgot">忘記密碼</a>
+                <a href="?do=reg">尚未註冊</a>
             </td>
         </tr>
     </table>

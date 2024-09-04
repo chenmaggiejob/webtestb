@@ -1,5 +1,31 @@
 <fieldset>
-    <legend>會員註冊</legend>
+    <legend>帳號管理</legend>
+    <table class="tab">
+
+        <tr>
+            <td class="clo">帳號</td>
+            <td class="clo">密碼</td>
+            <td class="clo">刪除</td>
+        </tr>
+        <?php
+        $users = $Users->all();
+        foreach ($users as $users) {
+        ?>
+            <tr>
+                <td><?= $users['acc']; ?></td>
+                <td><?= str_repeat("*", strlen($users['pw'])); ?></td>
+                <td><input type="checkbox" name="del" value="<?= $users['id']; ?>"></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
+    <div>
+        <button onclick="del()">確定刪除</button>
+        <button onclick="clear()">取消選取</button>
+    </div>
+
+    <h2>新增會員</h2>
     <div style="color:red">*請註冊您所要設定的帳號及密碼（最長12個字元）</div>
     <table>
         <tr>
@@ -45,10 +71,28 @@
                     alert("帳號重複")
                 } else {
                     $.post("./api/reg.php", user, () => {
-                        alert("註冊成功，歡迎加入")
+                        // alert("註冊成功，歡迎加入")
+                        location.reload()
                     })
                 }
             })
+        }
+    }
+
+    function del() {
+        let chks = $("input[type='checkbox']:checked")
+        let ids = new Array()
+        if (chks.length > 0) {
+            for (let i = 0; i < chks.length; i++) {
+                ids.push(chks[i].value)
+            }
+            $.post("./api/del_user.php", {
+                ids
+            }, () => {
+                location.reload()
+            })
+        } else {
+            alert("沒有帳號要刪除")
         }
     }
 </script>
