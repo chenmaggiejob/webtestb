@@ -2,7 +2,7 @@
     <legend>會員註冊</legend>
     <!-- div+table>tr*5>td.clo+td>input:text -->
     <div style="color:red">*請設定您要註冊的帳號及密碼（最長12個字元）</div>
-    <table>
+    <table class="tab">
         <tr>
             <td class="clo">Step1:登入帳號</td>
             <td><input type="text" name="acc" id="acc"></td>

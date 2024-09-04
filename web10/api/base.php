@@ -23,9 +23,9 @@ class DB
             } else {
                 $sql .= $arg[0];
             }
-            // echo $sql;
-            return $this->pdo->query($sql)->fetchAll(2);
         }
+        // echo $sql;
+        return $this->pdo->query($sql)->fetchAll(2);
     }
 
     function find($arg)
