@@ -24,30 +24,28 @@
 
 <script>
     function login() {
-        $.post('./api/chk_acc.php', {
-            acc: $('#acc').val()
+        $.post("./api/chk_acc.php", {
+            acc: $("#acc").val()
         }, (chkAcc) => {
             if (parseInt(chkAcc) == 1) {
-                // console.log("帳號存在")
-                $.post('./api/chk_pw.php', {
-                    acc: $('#acc').val(),
-                    pw: $('#pw').val()
-                }, (chk_Pw) => {
-                    if (parseInt(chk_Pw)) {
-                        if (parseInt(chkAcc) == 'admin') {
-                            location.href = './bank.php'
+                $.post("./api/chk_pw.php", {
+                    acc: $("#acc").val(),
+                    pw: $("#pw").val()
+                }, (chkPw) => {
+                    if ((parseInt(chkPw))) {
+                        if ($("#acc").val() == 'admin') {
+                            location.href = "./back.php"
                         } else {
-                            location.href = './index.php'
+                            location.href = "./index.php"
                         }
-                    } else {
+                    } else(
                         alert("密碼錯誤")
-                    }
+                    )
                 })
             } else {
                 alert("查無帳號")
             }
         })
-
     }
 
     function clear() {
