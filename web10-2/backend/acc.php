@@ -91,7 +91,8 @@
             }
             $.post("./api/del_user.php", {
                 ids
-            }, () => {
+            }, (res) => {
+                // console.log(res);
                 location.reload();
             })
         } else {
