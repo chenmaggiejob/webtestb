@@ -100,7 +100,14 @@ class DB
 }
 
 $Users = new DB('users');
+$Total = new DB('total');
 // $data = $Users->count(['acc' => 'admin']);
+function q($sql)
+{
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db10";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(2);
+}
 
 function to($url)
 {
@@ -115,3 +122,15 @@ function dd($array)
 }
 
 // dd($data);
+
+
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['date' => date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    } else {
+        $Total->find(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+}
