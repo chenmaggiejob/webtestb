@@ -31,15 +31,6 @@ class DB
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function a2s($array)
-    {
-        $tmp = [];
-        foreach ($array as $key => $value) {
-            $tmp[] = "`$key` = '$value'";
-        }
-        return $tmp;
-    }
-
     function find($arg)
     {
 
@@ -99,6 +90,15 @@ class DB
         // echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
+
+    function a2s($array)
+    {
+        $tmp = [];
+        foreach ($array as $key => $value) {
+            $tmp[] = "`$key` = '$value'";
+        }
+        return $tmp;
+    }
 }
 
 
@@ -106,6 +106,7 @@ class DB
 
 
 $User = new DB('users');
+$Total = new DB('total');
 // $data = $Users->count(['acc' => 'admin']);
 
 
@@ -114,7 +115,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db10";
     $pdo = new PDO($dsn, 'root', '');
-    echo $sql;
+    // echo $sql;
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -131,6 +132,16 @@ function dd($array)
 }
 
 
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['data' => date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    } else {
+        $Total->save(["date" => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+}
 
 
 // q("SELECT * FROM `users` WHERE `id` = 1");
