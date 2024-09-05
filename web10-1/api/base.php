@@ -134,7 +134,7 @@ function dd($array)
 
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
-        $total = $Total->find(['data' => date("Y-m-d")]);
+        $total = $Total->find(['date' => date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     } else {
