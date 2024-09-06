@@ -101,6 +101,7 @@ class DB
 
 $Users = new DB('users');
 $Total = new DB('total');
+$News = new DB("news");
 
 
 function q($sql)
