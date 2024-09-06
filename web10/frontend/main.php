@@ -43,7 +43,7 @@
 
 <div class="articles">
     <div class="article active">
-        <span style="font-weight: bolder;fone-size:20px;">健康新知</span>
+        <span style="font-weight: bolder;font-size: 20px;">健康新知</span>
         <pre>
 缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
 資料來源： 行政院衛生署國民健康局 
@@ -65,7 +65,7 @@
         </pre>
     </div>
     <div class="article">
-        <span style="font-weight: bolder;fone-size:20px;">菸害防治</span>
+        <span style="font-weight: bolder;font-size: 20px;">菸害防治</span>
         <pre>
 菸害防治法規
 第二十三條　　違反第五條或第十條第一項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並得按次連續處罰。
@@ -91,7 +91,7 @@
         </pre>
     </div>
     <div class="article">
-        <span style="font-weight: bolder;fone-size:20px;">癌症防治</span>
+        <span style="font-weight: bolder;font-size: 20px;">癌症防治</span>
         <pre>
 降低罹癌風險 建構健康生活型態
 癌症防治   三管齊下  Part 1 降低罹癌風險建構健康生活型態 
@@ -113,7 +113,7 @@
         </pre>
     </div>
     <div class="article">
-        慢<span style="font-weight: bolder;fone-size:20px;">性病防治</span>
+        慢<span style="font-weight: bolder;font-size: 20px;">性病防治</span>
         <pre>
 長期憋尿 泌尿系統問題多 
 資料來源：中央健康保險局雙月刊第98期
