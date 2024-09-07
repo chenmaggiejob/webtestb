@@ -16,10 +16,22 @@
 </div>
 
 <script>
-    // getTitles(1)
+    getTitles(1)
 
     $(".type").on("click", function() {
         $("#navType").text($(this).text())
         getTitles($(this).data('type'))
     })
+
+    function getTitles(type) {
+        $("#content").load("./api/get_titles.php", {
+            type
+        })
+    }
+
+    function getNews(id) {
+        $("#content").load("./api/get_news.php", {
+            id
+        })
+    }
 </script>
