@@ -1,25 +1,23 @@
 <div>
     目前位置：首頁 > 分類網誌 > <span id="navType">健康新知</span>
 </div>
-<div style="align-items:start;display:flex;">
-    <fieldset style="padding: 10px;width:150px;">
+<div style="align-items: start; display:flex;">
+    <fieldset style="width: 150px;padding: 10px;">
         <legend>分類網誌</legend>
-        <a class="type" data-type="1" style="margin: 5px; display:block;">健康新知</a>
-        <a class="type" data-type="2" style="margin: 5px; display:block;">菸害防治</a>
-        <a class="type" data-type="3" style="margin: 5px; display:block;">癌症防治</a>
-        <a class="type" data-type="4" style="margin: 5px; display:block;">慢性病防治</a>
+        <a class="type" data-type="1" style="margin: 5px; display:block">健康新知</a>
+        <a class="type" data-type="2" style="margin: 5px; display:block">菸害防治</a>
+        <a class="type" data-type="3" style="margin: 5px; display:block">癌症防治</a>
+        <a class="type" data-type="4" style="margin: 5px; display:block">慢性病防治</a>
     </fieldset>
-    <fieldset style="padding: 10px;width:550px;">
+    <fieldset style="width: 550px;padding: 10px;">
         <legend id="newTitle">文章列表</legend>
         <div id="content"></div>
     </fieldset>
 </div>
 
 <script>
-    getTitles(1)
-
     $(".type").on("click", function() {
-        $("#navType").text($(this).text())
+        $("#navType").text($(this).text());
         getTitles($(this).data('type'))
     })
 
