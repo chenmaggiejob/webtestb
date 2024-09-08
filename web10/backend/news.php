@@ -22,13 +22,13 @@
                     <td><?= $row['title']; ?></td>
                     <td><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>></td>
                     <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>"></td>
-
+                    <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                 </tr>
             <?php
             }
             ?>
         </table>
-        <div class="ct">
+        <div class=" ct">
             <?php
             if ($now - 1 > 0) {
                 $prev = $now - 1;
