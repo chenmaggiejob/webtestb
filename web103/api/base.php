@@ -103,6 +103,7 @@ class DB
 
 $Users = new DB('users');
 $Total = new DB('total');
+$News = new DB('news');
 // $data = $Users->count(['id' => '3']);
 function q($sql)
 {
