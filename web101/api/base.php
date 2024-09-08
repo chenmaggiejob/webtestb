@@ -104,6 +104,7 @@ class DB
 
 $Users = new DB('users');
 $Total = new DB('total');
+$News = new DB('news');
 // $data = $Users->del(['id' => '5']);
 
 function q($sql)
