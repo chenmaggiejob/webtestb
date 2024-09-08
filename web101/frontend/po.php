@@ -19,9 +19,11 @@
 
 
 <script>
+    getTitles(1)
+
     $(".type").on("click", function() {
         $("#navType").text($(this).text())
-        getTitles($this).data('type')
+        getTitles($(this).data('type'))
     })
 
     function getTitles(type) {
@@ -30,13 +32,9 @@
         })
     }
 
-
-
-
-
-
-
     function getNews(id) {
-
+        $("#content").load("./api/get_news.php", {
+            id
+        })
     }
 </script>
